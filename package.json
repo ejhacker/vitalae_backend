@@ -1,0 +1,30 @@
+{
+  "name": "vitalae-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Vitalae website to store user data.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development node server.js",
+    "prod": "NODE_ENV=production node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "sqlite3": "^5.1.6",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "health",
+    "monitoring",
+    "api",
+    "express",
+    "sqlite"
+  ],
+  "author": "Vitalae Team",
+  "license": "MIT"
+}
