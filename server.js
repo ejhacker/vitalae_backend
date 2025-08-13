@@ -11,9 +11,21 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 // Middleware
 app.use(cors({
     origin: NODE_ENV === 'production' 
-        ? ['https://your-frontend-domain.com'] // Replace with your actual frontend domain
-        : ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:5000'],
-    credentials: true
+        ? [
+            'https://vitalae.vercel.app',           // Vercel deployment
+            'https://vitalae.netlify.app',          // Netlify deployment
+            'https://yourusername.github.io',       // GitHub Pages (replace with your username)
+            'http://localhost:3000',                // Local development
+            'http://127.0.0.1:3000',               // Local development
+            'http://localhost:5000',                // Alternative local port
+            'file://',                              // Local file access
+            'null',                                 // Local file access
+            '*'                                     // Allow all origins temporarily for testing
+          ]
+        : ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:5000', 'file://', 'null', '*'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(bodyParser.json());
 
@@ -22,7 +34,9 @@ app.get('/api/health', (req, res) => {
     res.json({ 
         status: 'healthy', 
         environment: NODE_ENV,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        backend: 'Vitalae Backend Server',
+        version: '1.0.0'
     });
 });
 
@@ -114,4 +128,5 @@ app.listen(PORT, () => {
     console.log(`🌍 Environment: ${NODE_ENV}`);
     console.log(`📊 Database: ${dbPath}`);
     console.log(`🔗 Health check: http://localhost:${PORT}/api/health`);
+    console.log(`✅ Backend deployed and ready for frontend connections!`);
 });

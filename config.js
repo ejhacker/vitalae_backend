@@ -10,7 +10,7 @@ const config = {
     
     // Production environment (deployed)
     production: {
-        apiBaseUrl: 'https://your-backend-domain.com', // Replace with your actual backend URL
+        apiBaseUrl: 'https://vitalae-backend-vjj6.onrender.com', // Your deployed Render backend
         environment: 'production'
     }
 };
